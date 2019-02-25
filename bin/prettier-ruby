@@ -5,7 +5,7 @@ args="$@"
 set -euo pipefail
 
 main() {
-    source_at="$(abspath $(pwd)/$args)"
+    source_at="$(abspath $args)"
 
     cd "$(dirname $0)/.."
 
