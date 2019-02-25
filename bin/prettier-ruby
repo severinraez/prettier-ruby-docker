@@ -1,0 +1,23 @@
+#!/bin/bash
+
+args="$@"
+
+set -euo pipefail
+
+source_at=$(pwd)
+
+cd $(dirname $0)/..
+
+if [[ "$(docker images -q prettier-ruby | wc -l) " == "0" ]]; then
+
+    docker build . \
+           --build-arg USER_ID=$(id -u) \
+           --build-arg GROUP_ID=$(id -g) \
+           -t prettier-ruby
+
+fi
+
+docker run \
+       --rm \
+       -v $source_at:/opt/src \
+       prettier-ruby prettier $args
