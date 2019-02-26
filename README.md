@@ -2,7 +2,7 @@
 
 ## Installation
 
-    curl -L https://github.com/severinraez/prettier-ruby-docker/archive/v2.tar.gz | tar xvz
+    curl -L https://github.com/severinraez/prettier-ruby-docker/archive/v3.tar.gz | tar xvz
     cd prettier-ruby-docker-*
 
 You might want to put `bin/prettier-ruby` inside your path.
