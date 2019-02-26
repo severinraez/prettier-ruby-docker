@@ -1,15 +1,22 @@
 #!/bin/bash
 
+source_arg="$1"
+shift
 args="$@"
 
 set -euo pipefail
 
 main() {
-    source_at="$(abspath $args)"
+    source_at="$(abspath $source_arg)"
 
     cd "$(dirname $0)/.."
 
     build
+
+    if [[ ! -e $source_at ]]; then
+        echo "USAGE: prettier-ruby FILE [PRETTIER-ARGUMENTS]"
+        exit 1
+    fi
 
     if [[ -d $source_at ]]; then
         dir="$(dirname $source_at)"
@@ -22,7 +29,7 @@ main() {
     docker run \
            --rm \
            -v "$dir:/opt/src" \
-           prettier-ruby prettier "/opt/src/$file"
+           prettier-ruby prettier "/opt/src/$file" $args
 }
 
 build() {
