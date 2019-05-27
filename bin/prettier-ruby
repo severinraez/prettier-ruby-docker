@@ -33,8 +33,7 @@ main() {
 }
 
 build() {
-    if [[ "$(docker images -q prettier-ruby | wc -l) " == "0" ]]; then
-
+    if [[ "$(docker images -q prettier-ruby | wc -l)" == "0" ]]; then
         docker build . \
                --build-arg USER_ID=$(id -u) \
                --build-arg GROUP_ID=$(id -g) \
